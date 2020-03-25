@@ -10,9 +10,9 @@ Ignacio Lossiggio: Macros para el sistema de inventario.
 
 ## Screeshots
 Pantalla con un objeto en el inventario (toolbox).
-[Pantalla inicial](imagenes/ss01.png)
+![Pantalla inicial](imagenes/ss01.png)
 Pantalla con una descripción de un objeto.
-[Pantalla inicial](imagenes/ss02.png)
+![Pantalla inicial](imagenes/ss02.png)
 
 
 
