@@ -100,7 +100,7 @@ var saveAs=saveAs||navigator.msSaveBlob&&navigator.msSaveBlob.bind(navigator)||f
 		<div id="init-lacking">Your browser lacks required capabilities. Please upgrade it or switch to another to continue.</div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="La Aventura" startnode="29" creator="Twine" creator-version="2.3.5" ifid="995D9664-E66F-4AA8-8541-10D3549E36BC" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">#aplicacion {
+	<tw-storydata name="La Aventura" startnode="28" creator="Twine" creator-version="2.3.5" ifid="995D9664-E66F-4AA8-8541-10D3549E36BC" zoom="1" format="SugarCube" format-version="2.30.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">#aplicacion {
   width: 800px;
   height: 600px;
   margin: auto;
@@ -1007,7 +1007,10 @@ Desde aquí puedes ver las olas romper ruidosamente. La arena seca se siente bie
 /*
 [[Ir hacia el mar|playa]]
 [[Ir hacia las dunas|dunas]]
-*/</tw-passagedata><tw-passagedata pid="4" name="dunas" tags="nobr lugar" position="706,371" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="4" name="dunas" tags="nobr lugar" position="706,371" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+&lt;&lt;audio &quot;:musica&quot; fadeout&gt;&gt;
+
+&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 &lt;&lt;if tiene(&quot;brujula&quot;) is false&gt;&gt;Caminas sin rumbo fijo por las dunas cercanas. &lt;&lt;elseif tiene(&quot;brujula&quot;) is true&gt;&gt;Estás en medio de un desierto de dunas. Para no extraviarte decides caminar siempre en dirección Norte.&lt;&lt;/if&gt;&gt;
 &lt;/div&gt;
@@ -1027,14 +1030,17 @@ Desde aquí puedes ver las olas romper ruidosamente. La arena seca se siente bie
 [[Volver a la playa|playa-sur]]
 [[Caminar hacia el Norte|norte]]
 */
-</tw-passagedata><tw-passagedata pid="5" name="norte" tags="nobr lugar" position="842,366" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+</tw-passagedata><tw-passagedata pid="5" name="norte" tags="nobr lugar" position="842,366" size="100,100">
+
+&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 A la distancia ves lo que parece ser un faro.
 &lt;/div&gt;
-&lt;div clsas=&quot;fondo&quot;&gt;
+&lt;div class=&quot;marco&quot;&gt;
+&lt;div class=&quot;fondo&quot;&gt;
 &lt;img src=&quot;imagenes/faro-lejos.jpg&quot; width=&quot;100%&quot;&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
 &lt;div class=&quot;N&quot; data-passage=&quot;faro&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;S&quot; data-passage=&quot;playa-sur&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -1070,24 +1076,26 @@ A la distancia ves lo que parece ser un faro.
 &lt;&lt;createaudiogroup :musica&gt;&gt;
 	&lt;&lt;track &quot;musica&quot;&gt;&gt;
 &lt;&lt;/createaudiogroup&gt;&gt;
-</tw-passagedata><tw-passagedata pid="7" name="faro" tags="nobr lugar" position="994,379" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+</tw-passagedata><tw-passagedata pid="7" name="faro" tags="nobr lugar" position="983,362" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+&lt;&lt;audio &quot;:musica&quot; fadeout&gt;&gt;
+
+&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Un antiguo faro se yergue solitario por encima de las dunas circundantes. Quizás sea posible observar la costa desde la cima.
-&lt;&lt;if $PuertaAbierta is false&gt;&gt;
-La [[puerta|puerta]] del faro está cerrada.
-&lt;&lt;elseif $PuertaAbierta is true&gt;&gt;
-La [[puerta abierta|interior-faro]] invita a explorar sus secretos...
-&lt;&lt;/if&gt;&gt;
-Detrás tuyo se extienden las inmensas [[dunas de arena|norte]]
+Detrás tuyo se extienden las inmensas dunas de arena
 &lt;/div&gt;
 
+&lt;div class=&quot;marco&quot;&gt;
 &lt;div class=&quot;fondo&quot;&gt;
 &lt;img src=&quot;imagenes/faro.jpg&quot; alt=&quot;Un faro&quot;&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;div class=&quot;S&quot; data-passage=&quot;norte&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;N&quot; data-passage=&quot;puerta&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="fondo" tags="lugar nobr" position="417,650" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+/* [[Ir hacia el faro|puerta]] */</tw-passagedata><tw-passagedata pid="8" name="fondo" tags="lugar nobr" position="417,650" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;fondo_mar&quot; fadein loop volume 0.4&gt;&gt;
 
@@ -1109,31 +1117,103 @@ El agua es muy clara aquí. Algunos peces de colores huyen rápidamente. Quizás
 &lt;/div&gt;
 
 /*[[superficie|mar]]*/</tw-passagedata><tw-passagedata pid="9" name="llave" tags="item nobr" position="188,799" size="100,100">&lt;&lt;link &quot;&lt;div class=&#39;toolbox_item&#39; id=&#39;llave&#39;&gt;&lt;/div&gt;&quot;&gt;&gt; /*imagen de la llave*/
+
+&lt;&lt;if $Volver is &quot;puerta&quot; and $PuertaAbierta is false&gt;&gt;
+	&lt;&lt;set $ItemDescripcion to &quot;La llave entra perfectamente en la cerradura de esta vieja puerta. Al girarla, la puerta se abre con un metálico chirrido.&quot;&gt;&gt;
+	&lt;&lt;set $PuertaAbierta to true&gt;&gt;
+&lt;&lt;else&gt;&gt;
   &lt;&lt;set $ItemDescripcion to &quot;Es una llave plateada. 
   Parece pertenecer a alguna puerta muy antigua.&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
   &lt;&lt;set $MostrarOverlay to true&gt;&gt;
   /*ahora necesitamos updatescreen*/
   &lt;&lt;script&gt;&gt;state.display(state.active.title, null, &quot;back&quot;)&lt;&lt;/script&gt;&gt; 
 &lt;&lt;/link&gt;&gt;
-</tw-passagedata><tw-passagedata pid="10" name="puerta" tags="" position="1364,285" size="100,100">&lt;div class=&quot;recuadro-vertical&quot;&gt;
-&lt;img src=&quot;imagenes/puerta-faro.jpg&quot; width=&quot;200px&quot;&gt;
-&lt;/div&gt;
-&lt;div class=&quot;descripcion-vertical&quot;&gt;
-&lt;&lt;if $TieneLlave is true&gt;&gt;
-La puerta del faro está cerrada, sin embargo la cerradura parece ser de la misma época que la [[llave que encontraste|abre_puerta]] en el mar...
-&lt;&lt;elseif $TieneLlave is false&gt;&gt;
+</tw-passagedata><tw-passagedata pid="10" name="puerta" tags="nobr lugar" position="1182,368" size="100,100">&lt;&lt;audio &quot;:musica&quot; fadein volume 0.1 loop&gt;&gt;
+&lt;&lt;audio &quot;:sonidoambiente&quot; stop&gt;&gt;
+
+&lt;div class=&quot;pantalla&quot;&gt;
+&lt;div class=&quot;descripcion&quot;&gt;
+&lt;&lt;if tiene(&quot;llave&quot;) is true and $PuertaAbierta is false&gt;&gt;
+La puerta del faro está cerrada, sin embargo la cerradura parece ser de la misma época que la llave que encontraste en el mar...
+&lt;&lt;elseif tiene(&quot;llave&quot;) is false and $PuertaAbierta is false&gt;&gt;
 La puerta del faro está cerrada con llave. La cerradura parece muy antigua. Vaya a saber dónde encontrarás una llave para ella...
-Lo mejor sería seguir [[buscando|faro]].
+Lo mejor sería seguir buscando.
+&lt;&lt;elseif tiene(&quot;llave&quot;) is true and $PuertaAbierta is true&gt;&gt;
+La puerta que has abierto se abre a la oscuridad, invitandote a explorar los secretos del faro.
 &lt;&lt;/if&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="abre_puerta" tags="" position="1012,608" size="100,100">&lt;img src=&quot;imagenes/puerta-faro.jpg&quot; width=&quot;200px&quot;&gt;
-&lt;&lt;set $PuertaAbierta to true&gt;&gt;
-Con un chirrido metálico la cerradura cede. Logras abrir la puerta del faro. Te preguntas qué encontrarás [[dentro...|interior-faro]]
-Oyes a lo [[lejos|norte]] el sonido inconfundible de las olas y el viento</tw-passagedata><tw-passagedata pid="12" name="interior-faro" tags="" position="1374,399" size="100,100">&lt;img src=&quot;imagenes/faro-escalera.jpg&quot; width=&quot;400px&quot;&gt;
-Una escalera asciende espiraladamente hacia la cima del faro. La vista da vértigo, te preguntas si será mejor [[volver atrás|faro]] o continuar trepando [[la escalera|trepar]]</tw-passagedata><tw-passagedata pid="13" name="trepar" tags="" position="1253,558" size="100,100">&lt;img src=&quot;imagenes/sube-escalera.jpg&quot;&gt;
-La escalera parece interminable. Es mucho más fácil [[bajar|interior-faro]] que [[subir|cima]]...</tw-passagedata><tw-passagedata pid="14" name="cima" tags="" position="1276,759" size="100,100">&lt;img src=&quot;imagenes/faro-cima.jpg&quot; width=&quot;400px&quot;&gt;
-Finalmente llegaste a la cima del faro. El ambiente está inundado de luz. Tienes una inmejorable vista de la costa.
-Una [[escalera desciende|bajar]] hacia el mar.</tw-passagedata><tw-passagedata pid="15" name="bajar" tags="" position="1456,756" size="100,100">&lt;img src=&quot;imagenes/baja-escalera.jpg&quot; width=&quot;200px&quot;&gt;
-La escalera sigue [[hacia abajo|interior-faro]]. Dudas si [[volver a la cima|trepar]] tiene sentido. ¿ Quizas olvidaste algo allí ?</tw-passagedata><tw-passagedata pid="16" name="PassageFooter" tags="nobr" position="260,160" size="100,100">/* Despues de dibujar la pantalla, dibuja esto. Si es necesario dibuja el toolbox, u otros divs segun el caso */
+&lt;/div&gt;
+&lt;div class=&quot;marco&quot;&gt;
+&lt;div class=&quot;fondo&quot;&gt;
+&lt;&lt;if $PuertaAbierta is false&gt;&gt;
+	&lt;img src=&quot;imagenes/puerta-faro.jpg&quot;&gt;
+&lt;&lt;elseif $PuertaAbierta is true&gt;&gt;
+	&lt;img src=&quot;imagenes/puerta-faro_abierta.jpg&quot;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;N&quot; data-passage=&quot;interior-faro&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;S&quot; data-passage=&quot;faro&quot;&gt;&lt;/div&gt;
+
+/*
+[[sas|interior-faro]] */</tw-passagedata><tw-passagedata pid="11" name="interior-faro" tags="nobr lugar" position="1344,297" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+&lt;div class=&quot;descripcion&quot;&gt;
+Una escalera asciende espiraladamente hacia la cima del faro. La vista da vértigo, te preguntas si será mejor volver atrás o continuar trepando la escalera.
+&lt;/div&gt;
+
+&lt;div class=&quot;marco&quot;&gt;
+&lt;div class=&quot;fondo&quot;&gt;
+	&lt;img src=&quot;imagenes/faro-escalera.jpg&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;N&quot; data-passage=&quot;trepar&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;S&quot; data-passage=&quot;puerta&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+/*
+[[la escalera|trepar]]
+[[volver atrás|faro]] 
+*/</tw-passagedata><tw-passagedata pid="12" name="trepar" tags="nobr lugar" position="1522,305" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+&lt;&lt;audio &quot;:musica&quot; fadeout&gt;&gt;
+&lt;&lt;audio &quot;pasillo&quot; fadein volume 0.2 loop&gt;&gt;
+
+&lt;div class=&quot;pantalla&quot;&gt;
+&lt;div class=&quot;descripcion&quot;&gt;
+La escalera parece interminable. Es mucho más fácil [[bajar|interior-faro]] que [[subir|cima]]...
+&lt;/div&gt;
+&lt;div class=&quot;marco&quot;&gt;
+&lt;div class=&quot;fondo&quot;&gt;
+&lt;img src=&quot;imagenes/sube-escalera.jpg&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;N&quot; data-passage=&quot;cima&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;S&quot; data-passage=&quot;interior-faro&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="cima" tags="nobr lugar" position="1665,354" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+&lt;&lt;audio &quot;:musica&quot; fadeout&gt;&gt;
+
+&lt;div class=&quot;pantalla&quot;&gt;
+&lt;div class=&quot;descripcion&quot;&gt;
+Finalmente llegaste a la cima del faro, el ambiente está inundado de luz. Tienes una inmejorable vista de la costa. La luz del sol reconforta cálidamente tu cuerpo. 
+&lt;/div&gt;
+
+&lt;div class=&quot;marco&quot;&gt;
+&lt;div class=&quot;fondo&quot;&gt;
+	&lt;img src=&quot;imagenes/faro-cima_mirador.jpg&quot; &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;S&quot; data-passage=&quot;cima 2&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+/*
+[[bajar|cima 2]]
+*/</tw-passagedata><tw-passagedata pid="14" name="bajar" tags="" position="1471,595" size="100,100">&lt;img src=&quot;imagenes/baja-escalera.jpg&quot; width=&quot;200px&quot;&gt;
+La escalera sigue [[hacia abajo|interior-faro]]. Dudas si [[volver a la cima|trepar]] tiene sentido. ¿ Quizas olvidaste algo allí ?</tw-passagedata><tw-passagedata pid="15" name="PassageFooter" tags="nobr" position="260,160" size="100,100">/* Despues de dibujar la pantalla, dibuja esto. Si es necesario dibuja el toolbox, u otros divs segun el caso */
 
 &lt;&lt;if $MostrarFooter is true&gt;&gt;
 	&lt;div class=&quot;toolbox&quot;&gt;
@@ -1152,7 +1232,7 @@ La escalera sigue [[hacia abajo|interior-faro]]. Dudas si [[volver a la cima|tre
 	&lt;&lt;set $Volver to State.passage&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-</tw-passagedata><tw-passagedata pid="17" name="PassageHeader" tags="nobr" position="480,160" size="100,100">&lt;&lt;if $MostrarAvatar is true&gt;&gt;
+</tw-passagedata><tw-passagedata pid="16" name="PassageHeader" tags="nobr" position="480,160" size="100,100">&lt;&lt;if $MostrarAvatar is true&gt;&gt;
 &lt;div class=&quot;cabecera&quot;&gt;
   &lt;div id=&quot;avatar&quot;&gt;
   &lt;&lt;print &quot;&lt;div class=\&quot;avatar-foto foto&quot; + $avatar + &quot;\&quot;&gt;&lt;/div&gt;&quot;&gt;&gt;
@@ -1188,7 +1268,7 @@ La escalera sigue [[hacia abajo|interior-faro]]. Dudas si [[volver a la cima|tre
 
   &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="playa-norte" tags="nobr lugar" position="619,514" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="playa-norte" tags="nobr lugar" position="619,514" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;playa-lejos&quot; loop fadein volume 0.1&gt;&gt;
 
 &lt;div class=&quot;pantalla&quot;&gt;
@@ -1206,7 +1286,7 @@ Desde aquí puedes ver las olas romper ruidosamente. La arena seca se siente bie
 /*
 [[Alejarse de la playa|estacion playa]]
 [[Alejarse de la playa|playa]]
-*/</tw-passagedata><tw-passagedata pid="19" name="estacion playa" tags="nobr lugar" position="771,515" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="18" name="estacion playa" tags="nobr lugar" position="771,515" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 /*&lt;&lt;audio &quot;playa-lejos&quot; loop fadein volume 0.1&gt;&gt;*/
 &lt;&lt;audio &quot;musica&quot; loop fadein volume 0.3&gt;&gt;
 
@@ -1226,25 +1306,25 @@ Estás viendo lo que parece una estación de subte en la playa. ¿Qué significa
 
 [[Alejarse de la playa|entrada subte]]
 [[Alejarse de la playa|playa-norte]]
-*/</tw-passagedata><tw-passagedata pid="20" name="llave_ob" tags="item nobr" position="81,799" size="100,100">&lt;div class=&quot;objeto&quot; id=&quot;llave&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="19" name="llave_ob" tags="item nobr" position="81,799" size="100,100">&lt;div class=&quot;objeto&quot; id=&quot;llave&quot;&gt;
 	&lt;&lt;link &quot;&lt;img src=&#39;imagenes/llave.png&#39;&gt;&quot;&gt;&gt;
 		&lt;&lt;agarrar &quot;llave&quot;&gt;&gt;
 		&lt;&lt;script&gt;&gt;state.display(state.active.title, null, &quot;back&quot;)&lt;&lt;/script&gt;&gt; 
 	&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="21" name="brujula_ob" tags="loc_item nobr" position="80,908" size="100,100">&lt;div class=&quot;objeto&quot; id=&quot;brujula&quot;&gt;
+</tw-passagedata><tw-passagedata pid="20" name="brujula_ob" tags="loc_item nobr" position="80,908" size="100,100">&lt;div class=&quot;objeto&quot; id=&quot;brujula&quot;&gt;
 	&lt;&lt;link &quot;&lt;img src=&#39;imagenes/brujula.png&#39;&gt;&quot;&gt;&gt;
 		&lt;&lt;agarrar &quot;brujula&quot;&gt;&gt;
 		&lt;&lt;script&gt;&gt;state.display(state.active.title, null, &quot;back&quot;)&lt;&lt;/script&gt;&gt; 
 	&lt;&lt;/link&gt;&gt;
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="22" name="brujula" tags="item nobr" position="189,907" size="100,100">&lt;&lt;link &quot;&lt;div class=&#39;toolbox_item&#39; id=&#39;brujula&#39;&gt;&lt;/div&gt;&quot;&gt;&gt; 
+</tw-passagedata><tw-passagedata pid="21" name="brujula" tags="item nobr" position="189,907" size="100,100">&lt;&lt;link &quot;&lt;div class=&#39;toolbox_item&#39; id=&#39;brujula&#39;&gt;&lt;/div&gt;&quot;&gt;&gt; 
   &lt;&lt;set $ItemDescripcion to &quot;Es una brújula oxidada. 
   Alguien debió haberla perdido hace años. Será muy útil para orientarte entre las dunas.&quot;&gt;&gt;
   &lt;&lt;set $MostrarOverlay to true&gt;&gt;
   /*ahora necesitamos updatescreen*/
   &lt;&lt;script&gt;&gt;state.display(state.active.title, null, &quot;back&quot;)&lt;&lt;/script&gt;&gt; 
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="entrada subte" tags="lugar nobr" position="613,654" size="100,100">
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="entrada subte" tags="lugar nobr" position="613,654" size="100,100">
 &lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 La escalera desciende hacia la oscuridad.
@@ -1260,7 +1340,7 @@ La escalera desciende hacia la oscuridad.
 /*
 [[Alejarse de la playa|pasillo 1]]
 [[Alejarse de la playa|estacion playa]]
-*/</tw-passagedata><tw-passagedata pid="24" name="pasillo 1" tags="lugar nobr" position="616,856" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="23" name="pasillo 1" tags="lugar nobr" position="616,856" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;:musica&quot; fadeout&gt;&gt;
 
 &lt;&lt;audio &quot;pasillo&quot; loop fadein volume 0.1&gt;&gt;
@@ -1282,7 +1362,7 @@ Mientras desciendes por la escalera tienes el presentimiento de que estás entra
 /*
 [[Alejarse de la playa|pasillo 3]]
 [[Alejarse de la playa|entrada subte]]
-*/</tw-passagedata><tw-passagedata pid="25" name="pasillo 3" tags="nobr lugar" position="624,1034" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="24" name="pasillo 3" tags="nobr lugar" position="624,1034" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas por este laberinto.Descendiendo quien sabe a dónde.
 &lt;/div&gt;
@@ -1300,7 +1380,7 @@ Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas
 [[Alejarse de la playa|pasillo 1]]
 [[Alejarse de la playa|pasillo 2]]
 [[Alejarse de la playa|pasillo 4]]
-*/</tw-passagedata><tw-passagedata pid="26" name="pasillo 2" tags="nobr lugar" position="841,1285" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="25" name="pasillo 2" tags="nobr lugar" position="841,1285" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas por este laberinto.Descendiendo quien sabe a dónde.
 &lt;/div&gt;
@@ -1316,7 +1396,7 @@ Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas
 /*
 [[Alejarse de la playa|pasillo 3]]
 [[Alejarse de la playa|pasillo 4]]
-*/</tw-passagedata><tw-passagedata pid="27" name="pasillo 4" tags="nobr lugar" position="790,1114" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="26" name="pasillo 4" tags="nobr lugar" position="790,1114" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas por este laberinto.Descendiendo quien sabe a dónde.
 &lt;/div&gt;
@@ -1333,7 +1413,7 @@ Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas
 /*
 [[Alejarse de la playa|pasillo 3]]
 [[Alejarse de la playa|pasillo 5]]
-*/</tw-passagedata><tw-passagedata pid="28" name="pasillo 5" tags="nobr lugar" position="848,956" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="27" name="pasillo 5" tags="nobr lugar" position="848,956" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas por este laberinto.Descendiendo quien sabe a dónde.
 &lt;/div&gt;
@@ -1353,11 +1433,11 @@ Estos pasillos están muy solitarios. Un escalofrío te recorre mientras avanzas
 [[Alejarse de la playa|pasillo 6]]
 [[Alejarse de la playa|pasillo 2]]
 [[Alejarse de la playa|pasillo 1]]
-*/</tw-passagedata><tw-passagedata pid="29" name="INICIO" tags="nobr" position="196,366" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="28" name="INICIO" tags="nobr" position="196,366" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Esta es una aventura gráfica escrita en Twine. Fue escrita por Claudio Andaur para probar la potencialidad de Twine y matar el aburrimiento. El objetivo era recrear la sensación de extrañeza de los juegos de la saga Myst/Riven. Si crees que se ha conseguido, invitame una cerveza, dale megusta, o regalame unos pesos.
 &lt;&lt;link [[Cállate, quiero jugar!|playa]]&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="overlay" tags="nobr" position="202,647" size="100,100">/* Una pantalla vacía genérica con un botón para cerrarla */
+&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="overlay" tags="nobr" position="202,647" size="100,100">/* Una pantalla vacía genérica con un botón para cerrarla */
 
 &lt;div class=&quot;overlay&quot;&gt;
 
@@ -1367,7 +1447,7 @@ Esta es una aventura gráfica escrita en Twine. Fue escrita por Claudio Andaur p
 	&lt;&lt;set $MostrarOverlay to false&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="31" name="pasillo 6" tags="nobr lugar" position="1039,1055" size="100,100">&lt;&lt;audio &quot;:musica&quot; fadein loop&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="30" name="pasillo 6" tags="nobr lugar" position="1039,1055" size="100,100">&lt;&lt;audio &quot;:musica&quot; fadein loop&gt;&gt;
 &lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;tunel&quot; fadein volume 0.1 loop&gt;&gt;
 
@@ -1387,7 +1467,7 @@ Desde el fondo del pasillo llega un rumor como de máquinas en movimiento.
 [[Alejarse de la playa|pasillo 5]]
 [[Alejarse de la playa|pasillo 2]]
 [[Alejarse de la playa|anden]]
-*/</tw-passagedata><tw-passagedata pid="32" name="anden" tags="nobr lugar" position="1240,1277" size="100,100">&lt;&lt;audio &quot;:musica&quot; fadeout&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="31" name="anden" tags="nobr lugar" position="1240,1277" size="100,100">&lt;&lt;audio &quot;:musica&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;tunel&quot; fadein volume 0.2 loop&gt;&gt;
 
@@ -1408,7 +1488,7 @@ Es una estación de subte, parece desierta. Una sensación de inquietud te invad
 [[Alejarse de la playa|anden E]]
 [[Alejarse de la playa|salida anden]]
 [[Alejarse de la playa|anden W]]
-*/</tw-passagedata><tw-passagedata pid="33" name="anden E" tags="nobr lugar" position="1377,1280" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="32" name="anden E" tags="nobr lugar" position="1377,1280" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Es una estación de subte, parece desierta. Una sensación de inquietud te invade. A lo lejos se oye un rumor mecánico. Un clamor ininteligible.
 &lt;/div&gt;
@@ -1424,7 +1504,7 @@ Es una estación de subte, parece desierta. Una sensación de inquietud te invad
 /*[[Alejarse de la playa|fondo anden E]]
 [[Alejarse de la playa|anden puerta]]
 [[Alejarse de la playa|anden]]
-*/</tw-passagedata><tw-passagedata pid="34" name="anden W" tags="nobr lugar" position="1097,1300" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="33" name="anden W" tags="nobr lugar" position="1097,1300" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Es una estación de subte, parece desierta. Una sensación de inquietud te invade. A lo lejos se oye un rumor mecánico. Un clamor ininteligible.
 &lt;/div&gt;
@@ -1441,7 +1521,7 @@ Es una estación de subte, parece desierta. Una sensación de inquietud te invad
 [[Alejarse de la playa|vias estacion]]
 [[Alejarse de la playa|fondo anden W]]
 [[Alejarse de la playa|anden]]
-*/</tw-passagedata><tw-passagedata pid="35" name="fondo anden E" tags="nobr lugar" position="1514,1416" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="34" name="fondo anden E" tags="nobr lugar" position="1514,1416" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;tunel&quot; fadein volume 0.2 loop&gt;&gt;
 
 &lt;div class=&quot;pantalla&quot;&gt;
@@ -1459,7 +1539,7 @@ El anden termina aquí. Más allá continua el túnel. Un aire cálido sopla des
 /*
 [[Alejarse de la playa|tunel]]
 [[Alejarse de la playa|anden E]]
-*/</tw-passagedata><tw-passagedata pid="36" name="anden puerta" tags="nobr lugar" position="1501,1082" size="100,100">&lt;&lt;audio &quot;:musica&quot; fadein volume 0.2 loop&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="35" name="anden puerta" tags="nobr lugar" position="1501,1082" size="100,100">&lt;&lt;audio &quot;:musica&quot; fadein volume 0.2 loop&gt;&gt;
 &lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;tunel&quot; fadein volume 0.1 loop&gt;&gt;
 
@@ -1478,7 +1558,7 @@ Apenas visible junto al quiosco, ves una angosta puerta. Parece cerrada.
 /*
 [[Alejarse de la playa|anden]]
 [[Alejarse de la playa|fondo anden E]]
-*/</tw-passagedata><tw-passagedata pid="37" name="tunel" tags="nobr lugar" position="1073,1603" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="36" name="tunel" tags="nobr lugar" position="1073,1603" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;caverna&quot; fadein volume 0.2 loop&gt;&gt;
 &lt;&lt;audio &quot;tunel&quot; fadein volume 0.1 loop&gt;&gt;
 
@@ -1498,7 +1578,7 @@ El túnel parece prolongarse eternamente en la oscuridad.
 /*
 [[Alejarse de la playa|tunel2]]
 [[Alejarse de la playa|fondo anden E]]
-*/</tw-passagedata><tw-passagedata pid="38" name="tunel2" tags="nobr lugar" position="1231,1743" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="37" name="tunel2" tags="nobr lugar" position="1231,1743" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 El túnel parece prolongarse eternamente en la oscuridad. 
 &lt;/div&gt;
@@ -1514,7 +1594,7 @@ El túnel parece prolongarse eternamente en la oscuridad.
 /*
 [[Alejarse de la playa|tunel]]
 [[Alejarse de la playa|tunel 3]]
-*/</tw-passagedata><tw-passagedata pid="39" name="salida anden" tags="nobr lugar" position="1236,1045" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+*/</tw-passagedata><tw-passagedata pid="38" name="salida anden" tags="nobr lugar" position="1236,1045" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 Hay algo inusual en esta estación.
 &lt;/div&gt;
@@ -1529,7 +1609,7 @@ Hay algo inusual en esta estación.
 &lt;/div&gt;
 [[Alejarse de la playa|pasillo 5]]
 [[Alejarse de la playa|anden E]]
-[[Alejarse de la playa|anden W]]</tw-passagedata><tw-passagedata pid="40" name="tunel 3" tags="nobr lugar" position="1418,1717" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+[[Alejarse de la playa|anden W]]</tw-passagedata><tw-passagedata pid="39" name="tunel 3" tags="nobr lugar" position="1418,1717" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
 &lt;div class=&quot;descripcion&quot;&gt;
 El túnel parece prolongarse eternamente en la oscuridad. 
 &lt;/div&gt;
@@ -1545,7 +1625,7 @@ El túnel parece prolongarse eternamente en la oscuridad.
 /*
 [[Alejarse de la playa|tunel2]]
 [[Alejarse de la playa|vias estacion]]
-*/</tw-passagedata><tw-passagedata pid="41" name="vias estacion" tags="nobr lugar" position="1295,1564" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="40" name="vias estacion" tags="nobr lugar" position="1295,1564" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;tunel&quot; fadein volume 0.1 loop&gt;&gt;
 
 &lt;div class=&quot;pantalla&quot;&gt;
@@ -1567,7 +1647,7 @@ Otra estación. No parece muy diferente de la anterior.
 [[Alejarse de la playa|tunel2]]
 [[Alejarse de la playa|anden]]
 [[Alejarse de la playa|tunel]]
-*/</tw-passagedata><tw-passagedata pid="42" name="fondo anden W" tags="nobr lugar" position="972,1425" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="41" name="fondo anden W" tags="nobr lugar" position="972,1425" size="100,100">&lt;&lt;audio &quot;:sonidoambiente&quot; fadeout&gt;&gt;
 &lt;&lt;audio &quot;tunel&quot; fadein volume 0.2 loop&gt;&gt;
 
 &lt;div class=&quot;pantalla&quot;&gt;
@@ -1589,6 +1669,23 @@ Es una estación de subte, parece desierta. Una sensación de inquietud te invad
 [[Alejarse de la playa|tunel]]
 [[Alejarse de la playa|anden W]]
 
+*/</tw-passagedata><tw-passagedata pid="42" name="cima 2" tags="nobr lugar" position="1666,476" size="100,100">&lt;div class=&quot;pantalla&quot;&gt;
+&lt;div class=&quot;descripcion&quot;&gt;
+Una escalera desciende. Es la misma que te trajo aquí. No parece haber nadie alrededor. Todo está desierto...
+&lt;/div&gt;
+
+&lt;div class=&quot;marco&quot;&gt;
+&lt;div class=&quot;fondo&quot;&gt;
+	&lt;img src=&quot;imagenes/faro-cima_escalera.jpg&quot; &gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;S&quot; data-passage=&quot;trepar&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;N&quot; data-passage=&quot;cima&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+/*
+[[bajar|trepar]]
+[[bajar|cima]]
 */</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
